@@ -1,0 +1,5 @@
+* =--html-in-header= MWE
+
+- https://discord.com/channels/273534239310479360/335502067432947748/852480745867182100
+- https://github.com/rust-lang/docs.rs/issues/302
+- https://github.com/rust-lang/cargo/issues/331
