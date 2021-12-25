@@ -3,3 +3,27 @@
 - https://discord.com/channels/273534239310479360/335502067432947748/852480745867182100
 - https://github.com/rust-lang/docs.rs/issues/302
 - https://github.com/rust-lang/cargo/issues/331
+
+Maybe https://discord.com/channels/273534239310479360/818964227783262209/893204753121677313 is a solution:
+#+begin_src rust
+// rustdoc does have a special flag for this called html-in-header but for some reason it does not seem to
+// work with cargo doc no matter what i try, so i resort to just injecting the html manually by "abusing" html_favicon_url
+// im sincerely not sorry to any rustdoc maintainer who might see this, deal with it 😎
+#![doc(
+    html_favicon_url = r#""><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/katex@0.13.2/dist/contrib/auto-render.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        renderMathInElement(document.body, {
+            delimiters: [
+                {left: "$$", right: "$$", display: true},
+                {left: "\\(", right: "\\)", display: false},
+                {left: "$", right: "$", display: false},
+                {left: "\\[", right: "\\]", display: true}
+            ]
+        });
+    });
+</script>"#
+)]
+#+end_src
